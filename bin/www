@@ -4,10 +4,9 @@
  * Module dependencies.
  */
 
-var fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('codepro:server');
-var http = require('https');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -20,14 +19,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var certDir = __dirname + '/../../../SiteExtensions/letsencrypt/config/httpsacme-v01.api.letsencrypt.org/';
-// var certDir = 'local_certs/';
-var privateKey  = fs.readFileSync(certDir + 'www.codeprotech.uk-key.pem', 'utf8');
-var certificate = fs.readFileSync(certDir + 'www.codeprotech.uk-crt.pem', 'utf8');
-
-var credentials = { key: privateKey, cert: certificate };
-
-var server = http.createServer(credentials, app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
