@@ -15,7 +15,7 @@ var app = express();
 app.all('*', function (req, res, next) {
   if (req.secure) {
     return next();
-  };
+  }
 
   // res.redirect('https://localhost:' + 443 + req.url);
   res.redirect('https://' + req.hostname + ':' + 443 + req.url);
