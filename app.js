@@ -12,17 +12,17 @@ var app = express();
 
 // Route all Traffic to Secure Server
 // Order is important (this should be the first route)
-app.all('*', function (req, res, next) {
-  if (req.secure) {
-    return next();
-  }
+// app.all('*', function (req, res, next) {
+//   if (req.secure) {
+//     return next();
+//   }
 
-  if (app.get('env') === 'development') {
-    res.redirect('https://localhost:' + 443 + req.url);
-  } else {
-    res.redirect('https://' + req.hostname + req.url);
-  }
-});
+//   if (app.get('env') === 'development') {
+//     res.redirect('https://localhost:' + 443 + req.url);
+//   } else {
+//     res.redirect('https://' + req.hostname + req.url);
+//   }
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
