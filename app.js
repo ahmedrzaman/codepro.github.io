@@ -17,8 +17,11 @@ app.all('*', function (req, res, next) {
     return next();
   }
 
-  // res.redirect('https://localhost:' + 443 + req.url);
-  res.redirect('https://' + req.hostname + ':' + 443 + req.url);
+  if (app.get('env') === 'development') {
+    res.redirect('https://localhost:' + 443 + req.url);
+  } else {
+    res.redirect('https://' + req.hostname + req.url);
+  }
 });
 
 // view engine setup
